@@ -1,0 +1,100 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% load article_tags %}
+{% block css_styles %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/blog_style.css' %}">
+{% endblock %}
+
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+    {% if article.image %}
+        <a href="#!"><img class="card-img-top" src="{{ article.image.url }}"
+                          alt="..."/></a>
+    {% endif %}
+
+    <div class="card mb-4">
+
+        <div class="card-body">
+            <div class="fst-italic small text-muted">{{ article.publish }}</div>
+            <h2 class="card-title">{{ article.title }}</h2>
+            <p class="card-title">Tags: {{ article.tags.all|join:', ' }}</p>
+            <div class="rating-buttons d-flex flex-row justify-content-start">
+                <button class="btn btn-lg btn-primary m-3" data-post="{{ article.id }}"
+                        data-value="1">Лайк
+                </button>
+                <button class="btn btn-lg btn-secondary  m-3" data-post="{{ article.id }}"
+                        data-value="-1">Дизлайк
+                </button>
+                <button class="btn btn-sm btn-secondary rating-sum  m-3">
+                    Рейтинг: {{ article.get_sum_rating }}</button>
+            </div>
+            {% for similar_article in similar_articles %}
+                <a href="{{ similar_article.get_absolute_url }}"> {{ similar_article.title }}</a>
+            {% empty %}
+                <p class="card-text">No similar tags</p>
+            {% endfor %}
+
+            <p class="text-md-center"></p>
+            <p class="card-text">{{ article.full_description|markdown }}</p>
+            <div class="text-center d-flex justify-content-center mx-3">
+                <a class="btn btn-outline-secondary w-50 mx-3"
+                   href="{% url 'blog:share' article.slug %}">
+                    перейти к форме
+                </a>
+                <a class="btn btn-outline-dark w-50 mx-3">
+                    Send delay to my email
+                </a>
+                {% if article.author == user or user.is_superuser %}
+                    <a href="{% url 'blog:articles_delete' article.slug %}" class="btn btn-outline-dark w-50 mx-3">
+                        Удалить статейку
+                    </a>
+                    <a href="{% url 'blog:articles_update' article.slug %}" class="btn btn-outline-dark w-50 mx-3">
+                        Обновить статейку
+                    </a>
+                {% endif %}
+            </div>
+
+        </div>
+        <div class="card-footer">
+            <div class="footer-item">
+                <i class="fas fa-comment"></i> {{ article.comments.count }} комментов
+            </div>
+            <div class="footer-item">
+                <i class="fas fa-eye" aria-hidden="true"></i> {{ article.get_view_count }}  просмотров
+            </div>
+            <div class="footer-item">
+                <i class="fas fa-calendar" aria-hidden="true"></i> {{ article.created_at|date }}
+            </div>
+        </div>
+    </div>
+
+    <div class="card border-0">
+        <div class="card-body">
+            <h5 class="card-title mb-4 text-center">
+                Комментарии
+            </h5>
+            {% include 'blog/comments/comments_list.html' %}
+        </div>
+    </div>
+    <br>
+    {% include "blog/comments/comment_form.html" %}
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'js/ratings.js' %}"></script>
+    <script src="{% static 'js/comments.js' %}"></script>
+{% endblock %}
+
+{% block categories %}
+    {% all_categories %}
+{% endblock %}
+
+{% block last_articles_by_count %}
+    {% show_latest_articles %}
+{% endblock %}
