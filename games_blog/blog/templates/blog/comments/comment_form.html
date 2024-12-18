@@ -1,0 +1,57 @@
+<div class="card">
+    <div class="card-body">
+        <h6 class="card-title">
+            Форма добавления комментария
+        </h6>
+        <form method="post" action="{% url 'blog:article_comment' article.slug %}" id="commentForm" name="commentForm"
+              data-article-id="{{ article.slug }}">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <div class="d-grid gap-2 d-md-block mt-2">
+                <button type="submit" class="btn btn-dark" id="commentSubmit">Добавить комментарий</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+{#<div class="publish_comment d-flex justify-content-right">#}
+{#    <form action="{% url 'blog:article_comment' article.slug %}" method="post">#}
+{#        {% csrf_token %}#}
+{#        <div class="row mb-4">#}
+{#            {% if user.is_authenticated %}#}
+{#                <h3>Add a new comment, {{ user.username }}</h3>#}
+{#                <div class="col-lg-12 mt-2">#}
+{#                    <p class="fs-6 text-center">{{ form.content.label }}</p>#}
+{#                    {{ form.content }}#}
+{#                </div>#}
+{#            {% else %}#}
+{#                <div class="col-lg-6 mt-2">#}
+{#                    <p class="fs-6 text-center">{{ form.name.label }}</p>#}
+{#                    {{ form.name }}#}
+{#                </div>#}
+{#                <div class="col-lg-6 mt-2">#}
+{#                    <p class="fs-6 text-center">{{ form.email.label }}</p>#}
+{#                    {{ form.email }}#}
+{#                </div>#}
+{#                <div class="col-lg-12 mt-2">#}
+{#                    <p class="fs-6 text-center">{{ form.content.label }}</p>#}
+{#                    {{ form.content }}#}
+{#                </div>#}
+{#            {% endif %}#}
+{#            <div class="col-lg-12 mt-2">#}
+{#                <p class="fs-6 text-center">{{ form.parent.label }}</p>#}
+{#                {{ form.parent }}#}
+{#            </div>#}
+{#            <div class="col-lg-12 mt-2 d-flex justify-content-center">#}
+{#                <button class="btn btn-dark mt-3 w-50" type="submit">#}
+{#                    Add comment#}
+{#                </button>#}
+{#            </div>#}
+{#        </div>#}
+{##}
+{##}
+{#    </form>#}
+{#</div>#}
+
