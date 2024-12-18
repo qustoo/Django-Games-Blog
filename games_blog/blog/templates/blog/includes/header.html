@@ -1,0 +1,83 @@
+{% load article_tags %}
+{% load i18n %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
+    <div class="container">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <form class="d-flex align-items-center m-3" action="{% url 'set_language' %}" method="get">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            {% trans "Язык" %}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>
+                                <button class="btn" type="submit" name="language"
+                                        value="en">{% trans "English" %}</button>
+                            </li>
+                            <li>
+                                <button class="btn" type="submit" name="language"
+                                        value="ru">{% trans "Russian" %}</button>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </form>
+        </div>
+
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+            <svg class="bi me-2" width="40" height="32" role="img" aria-label="Games"
+                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+                <path d="M192 64C86 64 0 150 0 256S86 448 192 448l256 0c106 0 192-86 192-192s-86-192-192-192L192 64zM496 168a40 40 0 1 1 0 80 40 40 0 1 1 0-80zM392 304a40 40 0 1 1 80 0 40 40 0 1 1 -80 0zM168 200c0-13.3 10.7-24 24-24s24 10.7 24 24l0 32 32 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-32 0 0 32c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-32-32 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l32 0 0-32z"/>
+            </svg>
+        </a>
+        <a class="navbar-brand">GameBlog Django 5</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="navbar-toggler-icon"></span></button>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        
+            <li><a href="{% url 'blog:articles' %}" class="nav-link px-2 text-secondary">{% trans 'Посты' %}</a></li>
+            <li><a href="{%  url 'blog:categories' %}" class="nav-link px-2 text-secondary">{% trans 'Категории' %}</a></li>
+            яя
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'blog:articles_create' %}"
+                       class="nav-link px-2 text-secondary">{% trans "Создать статью" %}</a></li>
+                <li><a href="{% url 'blog:categories_create' %}"
+                       class="nav-link px-2 text-secondary">{% trans "Создать категорию" %}</a></li>
+                <li><a href="{% url 'users:feedback' %}" class="nav-link px-2 text-secondary">{% trans "Фидбек" %}</a>
+                </li>
+                <li><a href="{% url 'chat:home' %}" class="nav-link px-2 text-secondary"> {% trans "Чат" %} </a></li>
+            {% endif %}
+        </ul>
+
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'latest_post_feed' %}">{% trans "Подписаться на RSS ленту" %}</a>
+                </li>
+
+                {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'users:profile_detail' user.profile %}"><img
+                            class="rounded-circle" width="30" src="{{ user.profile.avatar.url }}"/> {{ user.username }}
+                    </a></li>
+                    <li class="nav-item">
+                        <form action="{% url 'users:logout' %}" method="post">{% csrf_token %}
+                            <a href="#" class="nav-link" onclick="parentNode.submit();">{% trans "Выйти" %}</a>
+                        </form>
+                    </li>
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'users:login' %}">{% trans "Войти" %}</a></li>
+                    <li class="nav-item"><a class="nav-link"
+                                            href="{% url 'users:registration' %}">{% trans "Зарегистрироваться" %}</a>
+                    </li>
+                {% endif %}
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
