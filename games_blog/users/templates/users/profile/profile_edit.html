@@ -1,0 +1,59 @@
+{% extends "users/base.html" %}
+{% block title %}
+    {{ title }}
+{% endblock title %}
+
+{% block content %}
+    <main>
+        <div class="container ">
+            <div class="row  justify-content-center">
+                <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                    <div class="col-lg-12">
+                        {% include 'users/errors/non_field_errors.html' %}
+                        <div class="col-md-6 gradient-custom text-center text-white">
+                            <h5>Аватар</h5>
+                            <img class="img-fluid " src="{{ user.profile.avatar.url }}" alt=""
+                                 style="width: 200px; border-radius: 10px;">
+                        </div>
+                        {% for field in user_form %}
+                            <div class="form-row">
+                                <div class="col-lg-6">
+                                    <label class="col-lg-12 fs-6 col-form-label text-center">
+                                        {{ field.label }}
+                                    </label>
+                                    {{ field }}
+                                </div>
+                            </div>
+
+                        {% endfor %}
+                        {% for profile_field in form %}
+                            <div class="form-row">
+                                <div class="col-lg-6">
+                                    {% if profile_field.name == 'bio' %}
+                                        <label class="col-lg-12 fs-6 col-form-label text-center">
+                                            {{ profile_field.label }}
+                                        </label>
+                                        {{ form.media }}
+                                        {{ profile_field }}
+
+                                    {% else %}
+                                        <label class="col-lg-12 fs-6 col-form-label text-center">
+                                            {{ profile_field.label }}
+                                        </label>
+                                        {{ profile_field }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <button type="submit" class="col-md-6 btn btn-success mt-4 mb-4 text-center btn btn-dark">
+                        Подтвердить
+                        изменение профиля
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+{% endblock content %}
+

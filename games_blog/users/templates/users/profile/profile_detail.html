@@ -1,0 +1,38 @@
+{% extends 'users/base.html' %}
+
+{% block content %}
+    <main>
+        <div class="container">
+            <div class="row justify-content-center">
+
+                <div class="col-md-3 d-flex justify-content-center align-items-center">
+                    <img src="{{ profile.avatar.url }}" class="img-fluid rounded-5"
+                         alt="{{ profile }}">
+                </div>
+                <div class="col-lg-5">
+
+                    {% include 'users/errors/non_field_errors.html' %}
+
+                    <div class="card-text">
+                        <ul>
+                            <li>Никнейм: {{ profile.user.username }}</li>
+                            {% if profile.user.get_full_name %}
+                                <li>Имя и фамилия: {{ profile.user.get_full_name }}</li> {% endif %}
+                            <li>Заходил: {{ profile.user.last_login }} | {% if profile.is_online %}Онлайн{% else %}Не в
+                                сети {% endif %}</li>
+                            <li>Дата рождения: {{ profile.birth_date }}</li>
+                            <li>О себе: {{ profile.bio|safe }}</li>
+                        </ul>
+                        <hr>
+                        <a href="{% url 'users:profile_edit' profile.slug %}" class="btn btn-sm btn-primary">Редактировать
+                            профиль</a>
+                        <a href="{% url 'users:password_change' %}" class="btn btn-sm btn-primary">Сменить
+                            пароль</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}
