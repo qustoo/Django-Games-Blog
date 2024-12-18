@@ -1,0 +1,325 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-25 19:07+0300\n"
+"PO-Revision-Date: 2024-11-25 19:08+0300\n"
+"Last-Translator: qustoo qustoo <m@mail.ru>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Translated-Using: django-rosetta 0.9.9\n"
+
+#: .\blog\forms.py:84 .\blog\models.py:197
+msgid "Комментарий"
+msgstr "Comment"
+
+#: .\blog\forms.py:96
+msgid "Имя"
+msgstr "Name"
+
+#: .\blog\forms.py:100
+msgid "Почта"
+msgstr "Email"
+
+#: .\blog\models.py:17
+msgid "Описание категории"
+msgstr "Category description"
+
+#: .\blog\models.py:20
+msgid "Родительская категория"
+msgstr "Parent category"
+
+#: .\blog\models.py:28 .\blog\models.py:95
+msgid "Категория"
+msgstr "Category"
+
+#: .\blog\models.py:29
+msgid "Категории"
+msgstr "Categories"
+
+#: .\blog\models.py:44
+msgid "Опубликовано"
+msgstr "Published"
+
+#: .\blog\models.py:45
+msgid "Не опубликано"
+msgstr "Not published"
+
+#: .\blog\models.py:47
+msgid "Заголовок"
+msgstr "Title"
+
+#: .\blog\models.py:57
+msgid "Краткое описание"
+msgstr "Short description"
+
+#: .\blog\models.py:62
+msgid "Полное описание"
+msgstr "Full description"
+
+#: .\blog\models.py:65
+msgid "Превью поста"
+msgstr "Post Thumbnail"
+
+#: .\blog\models.py:73
+msgid "Статус публикации"
+msgstr "Article status "
+
+#: .\blog\models.py:79
+msgid "Автор"
+msgstr "Author"
+
+#: .\blog\models.py:85
+msgid "Обновил"
+msgstr "Updater user"
+
+#: .\blog\models.py:91
+msgid "Просмотры"
+msgstr "Views"
+
+#: .\blog\models.py:98
+msgid "Время публикации"
+msgstr "Publish time"
+
+#: .\blog\models.py:109 .\blog\models.py:139
+msgid "Статья"
+msgstr "Article"
+
+#: .\blog\models.py:110
+msgid "Статьи"
+msgstr "Articles"
+
+#: .\blog\models.py:142 .\blog\models.py:223
+msgid "Пользователь"
+msgstr "User"
+
+#: .\blog\models.py:145
+msgid "Значение"
+msgstr "Rating value"
+
+#: .\blog\models.py:145
+msgid "Нравится"
+msgstr "Liked"
+
+#: .\blog\models.py:145
+msgid "Не нравится"
+msgstr "Disliked"
+
+#: .\blog\models.py:147
+msgid "IP Адрес"
+msgstr "IP address"
+
+#: .\blog\models.py:153
+msgid "Рейтинг"
+msgstr "Rating"
+
+#: .\blog\models.py:154
+msgid "Рейтинги"
+msgstr "Ratings"
+
+#: .\blog\models.py:172
+msgid "Имя комментатора"
+msgstr "commentator's name"
+
+#: .\blog\models.py:179
+msgid "Статус комментария"
+msgstr "comment status"
+
+#: .\blog\models.py:185
+msgid "Родительский комментарий"
+msgstr "parent comment"
+
+#: .\blog\models.py:198
+msgid "Комментарии"
+msgstr "Comments"
+
+#: .\blog\models.py:214
+msgid "Тема письма"
+msgstr "Mail subject"
+
+#: .\blog\models.py:215
+msgid "Электронный адрес (email)"
+msgstr "EMAIL"
+
+#: .\blog\models.py:216
+msgid "Содержимое письма"
+msgstr "Mail content"
+
+#: .\blog\models.py:217
+msgid "Дата отправки"
+msgstr "Send date"
+
+#: .\blog\models.py:219
+msgid "IP отправителя"
+msgstr "IP address"
+
+#: .\blog\models.py:230 .\blog\models.py:231
+msgid "Обратная связь"
+msgstr "Feedback"
+
+#: .\blog\templates\blog\articles.html:26
+#: .\blog\templates\blog\sorted_articles.html:15
+msgid "Лайк"
+msgstr "Like"
+
+#: .\blog\templates\blog\articles.html:29
+#: .\blog\templates\blog\sorted_articles.html:18
+msgid "Дизлайк"
+msgstr "Dislike"
+
+#: .\blog\templates\blog\articles.html:33
+#: .\blog\templates\blog\sorted_articles.html:22
+msgid "рейтинг"
+msgstr "Rating"
+
+#: .\blog\templates\blog\articles.html:36
+#: .\blog\templates\blog\sorted_articles.html:25
+msgid "Теги"
+msgstr "Tags"
+
+#: .\blog\templates\blog\articles.html:65
+#: .\blog\templates\blog\sorted_articles.html:54
+msgid "Перейти на статью →"
+msgstr "Go to article"
+
+#: .\blog\templates\blog\articles.html:72
+#: .\blog\templates\blog\articles.html:75
+#: .\blog\templates\blog\sorted_articles.html:61
+msgid "комментариев"
+msgstr "Comment"
+
+#: .\blog\templates\blog\categories.html:6
+msgid "Доступные категории"
+msgstr "Available categories"
+
+#: .\blog\templates\blog\includes\footer.html:7
+msgid "Политика конфиденциальности"
+msgstr "Privacy policy"
+
+#: .\blog\templates\blog\includes\footer.html:10
+msgid "Условия использования"
+msgstr "Terms of use"
+
+#: .\blog\templates\blog\includes\footer.html:13
+msgid "Контакты"
+msgstr "Contacts"
+
+#: .\blog\templates\blog\includes\header.html:12
+msgid "Язык"
+msgstr "Laguange"
+
+#: .\blog\templates\blog\includes\header.html:16
+msgid "English"
+msgstr "English"
+
+#: .\blog\templates\blog\includes\header.html:19
+msgid "Russian"
+msgstr "Russian"
+
+#: .\blog\templates\blog\includes\header.html:38
+msgid "Посты"
+msgstr "Articles"
+
+#: .\blog\templates\blog\includes\header.html:40
+msgid "Создать статью"
+msgstr "Post article"
+
+#: .\blog\templates\blog\includes\header.html:41
+msgid "Фидбек"
+msgstr "Feedback"
+
+#: .\blog\templates\blog\includes\header.html:46
+msgid "Поиск..."
+msgstr "Search..."
+
+#: .\blog\templates\blog\includes\header.html:53
+msgid "Подписаться на RSS ленту"
+msgstr "subscribe to the RSS feed"
+
+#: .\blog\templates\blog\includes\header.html:62
+msgid "Выйти"
+msgstr "Logout"
+
+#: .\blog\templates\blog\includes\header.html:66
+msgid "Войти"
+msgstr "Login"
+
+#: .\blog\templates\blog\includes\header.html:68
+msgid "Зарегистрироваться"
+msgstr "Sing up"
+
+#: .\blog\templates\blog\includes\sort_articles_menu.html:3
+msgid "Сортировка:"
+msgstr "Sorted:"
+
+#: .\blog\templates\blog\includes\sort_articles_menu.html:10
+msgid "по ID"
+msgstr "on ID:"
+
+#: .\blog\templates\blog\includes\sort_articles_menu.html:28
+msgid "по автору"
+msgstr "on Author"
+
+#: .\blog\templates\blog\includes\sort_articles_menu.html:46
+msgid "по дате публикации"
+msgstr "on Article publish"
+
+#: .\blog\templates\blog\includes\sort_articles_menu.html:64
+msgid "по названию"
+msgstr "on title"
+
+#: .\blog\templates\blog\sorted_articles.html:64
+msgid "просмотров"
+msgstr "Views"
+
+#: .\blog\templates\blog\widgets\last_articles.html:5
+msgid "Последние посты:"
+msgstr "Latest articles"
+
+#: .\blog\templates\blog\widgets\most_commented_articles.html:5
+msgid "Самые комментируемые посты"
+msgstr "Most commented articles"
+
+#: .\blog\templates\blog\widgets\oauth_methods.html:5
+msgid "OAuth2 сервисы"
+msgstr "OAuth2 Services"
+
+#: .\blog\templates\blog\widgets\oauth_methods.html:10
+#: .\blog\templates\blog\widgets\oauth_methods.html:15
+#: .\blog\templates\blog\widgets\oauth_methods.html:20
+msgid "Зайти через"
+msgstr "Log via"
+
+#: .\blog\templates\blog\widgets\share_post.html:13
+msgid "Статья отправлена!"
+msgstr "Article was send!"
+
+#: .\blog\templates\blog\widgets\share_post.html:15
+msgid "E-mail успешно отправлен."
+msgstr "The e-mail has been sent successfully"
+
+#: .\blog\templates\blog\widgets\share_post.html:18
+msgid "была успешно отправлена на:"
+msgstr "was successfully sent to:"
+
+#: .\blog\templates\blog\widgets\share_post.html:23
+msgid "Share  by email"
+msgstr "Share by email"
+
+#: .\blog\templates\blog\widgets\share_post.html:28
+msgid "Отправить данные"
+msgstr "Submit"
+
+#: .\blog\views.py:33
+msgid "Главная страница"
+msgstr "Main page"
