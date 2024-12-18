@@ -1,0 +1,33 @@
+services:
+  db:
+    container_name: django-games-blog-db
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+    volumes:
+      - postgres_data_storages:/var/lib/postgresql/data/
+
+  redis:
+    container_name: django-local-redis
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+  celery:
+    build: .
+    container_name: django-celery-worker
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - ./:/app
+    command: celery -A games_blog worker --loglevel=info --logfile=/app/logs/celery-worker.log
+    depends_on:
+      - redis
+volumes:
+  postgres_data_storages:

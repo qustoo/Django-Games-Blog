@@ -1,0 +1,95 @@
+services:
+  app:
+    container_name: django-games-blog-app
+    build:
+      context: ./Dockerfile.prod
+    command: sh -c "python manage.py collectstatic --no-input &&
+                    python manage.py makemigrations &&
+                    python manage.py migrate &&
+                    gunicorn games_blog.asgi:application --bind 0.0.0.0:8000"
+    restart: always
+    volumes:
+      - ./:/app
+      - static:/home/app/web/static
+      - media:/home/app/web/static
+    expose:
+      - 8000
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - redis
+
+  db:
+    container_name: django-games-blog-db
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+    volumes:
+      - postgres_data_prod:/var/lib/postgresql/data/
+  redis:
+    container_name: django-games-blog-redis
+    image: redis:alpine
+    ports:
+     - "6379:6379"
+
+  celery-worker:
+    build:
+      context: ./Dockerfile.prod
+    container_name: django-celery-worker
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - ./:/app
+      - media:/app/media
+    command: celery -A games_blog worker --loglevel=info --logfile=/app/logs/celery-worker.log
+    depends_on:
+      - redis
+
+  celery-beat:
+    build:
+      context: .
+    container_name: django-celery-beat
+    env_file:
+      - .env
+    depends_on:
+      - redis
+    command: celery -A games_blog beat --loglevel=info --logfile=/app/logs/celery-beat.log
+    volumes:
+      - media:/app/media
+      - ./:/app
+  certbot:
+      image: certbot/certbot
+      env_file:
+        - .env
+      volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+      command: certbot_script.sh
+      depends_on:
+      - nginx
+  nginx:
+    build:
+      context: nginx/Dockerfile
+    ports:
+     - "80:80"
+     - "443:443"
+    volumes:
+      - static:/home/app/web/static
+      - media:/home/app/web/media
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    depends_on:
+      - app
+
+volumes:
+  postgres_data_prod:
+  static:
+  media:
