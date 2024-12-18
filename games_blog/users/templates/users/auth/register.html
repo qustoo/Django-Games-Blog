@@ -1,0 +1,92 @@
+{% extends 'users/base.html' %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+    <main>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-7">
+                    {% include 'users/errors/forms_errors.html' %}
+
+                    <div class="card shadow-lg border-0 rounded-lg mt-5">
+                        {% for message in messages %}
+                            {{ message.tags }} {{ message }}
+                        {% endfor %}
+                        <div class="card-header"><h3 class="text-center font-weight-light my-4">Создать аккаунт</h3>
+                        </div>
+                        <div class="card-body">
+                            <form class="row g-3 needs-validation" action="{% url 'users:registration' %}"
+                                  method="post" novalidate>
+                                {% csrf_token %}
+                                <div class="col-md-6">
+                                    <label for="{{ field.label }}" class="form-label">Имя</label>
+                                    {{ form.first_name }}
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="{{ form.last_name.id_for_label }}" class="form-label">Фамилия</label>
+                                    {{ form.last_name }}
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="{{ form.username.id_for_label }}" class="form-label">Username</label>
+                                    <div class="input-group has-validation">
+                                        <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                        {{ form.username }}
+                                        <div class="invalid-feedback">
+                                            Please choose a username.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="{{ form.email.id_for_label }}" class="form-label">Почта</label>
+                                    {{ form.email }}
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="{{ form.password1.id_for_label }}" class="form-label">Password </label>
+                                    {{ form.password1 }}
+                                    <div class="invalid-feedback">
+                                        Please provide a valid password.
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="{{ form.password2.id_for_label }}" class="form-label">Repeat
+                                        password</label>
+                                    {{ form.password2 }}
+                                    <div class="invalid-feedback">
+                                        Please provide a valid password same as first password.
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="{{ form.captcha.id_for_label }}" class="form-label">Captcha</label>
+                                    {{ form.captcha }}
+                                    <div class="invalid-feedback">
+                                        Please pass a captcha.
+                                    </div>
+                                </div>
+                                <div class="form-group d-flex align-items-center justify-content-center mt-4 mb-0">
+                                    <input class="btn btn-primary" type="submit" value="Зарегистироваться">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card-footer text-center">
+                            <div class="small"><a href="{% url 'users:login' %}">Уже есть аккаунт? Авторизоваться</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
