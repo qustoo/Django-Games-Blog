@@ -1,0 +1,11 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <form method="post" action="{% url 'blog:category_update' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+      <div class="d-grid gap-2 d-md-block mt-2 text-center">
+                    <button type="submit" class="btn btn-dark">Обновить категорию</button>
+                </div>
+    </form>
+{% endblock %}
