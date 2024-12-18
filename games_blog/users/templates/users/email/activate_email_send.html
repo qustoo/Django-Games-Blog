@@ -1,0 +1,20 @@
+{% extends 'users/base.html' %}
+
+{% block content %}
+    {% autoescape off %}
+        <div class="container">
+            <p class="card-text">
+
+                Здравствуйте, {{ user.get_full_name }}!
+
+                Пожалуйста, перейдите по следующей ссылке, чтобы подтвердить свой адрес электронной почты на нашем
+                сайте:
+
+                {{ activation_url }}
+
+                Команда сайта созданного на Django
+            </p>
+        </div>
+
+    {% endautoescape %}
+{% endblock %}    
