@@ -1,0 +1,32 @@
+{% extends "blog/base.html" %}
+{% load i18n %}
+
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+
+{% block content %}
+    {% if send_status %}
+        <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">{% trans "Статья отправлена!" %}</h4>
+            <p>
+                {% trans "E-mail успешно отправлен." %}
+            </p>
+            <p>
+                "<strong>{{ article.title }}</strong>" {% trans "была успешно отправлена на:" %}
+                <strong>{{ form.to.value|default:"" }}</strong>
+            </p>
+        </div>
+    {% else %}
+        <h1>{% trans "Share  by email" %} </h1>
+        <form action="{% url 'blog:share' article.slug %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-success" type="submit" value="send e-mail">
+                {% trans "Отправить данные" %}
+            </button>
+        </form>
+    {% endif %}
+{% endblock %}
