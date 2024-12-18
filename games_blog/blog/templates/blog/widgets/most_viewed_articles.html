@@ -1,0 +1,24 @@
+{% load article_tags cache i18n %}
+
+{% cache 300 most_viewed_articles %}
+    <div class="card mb-4">
+        <div class="list-group">
+            <a class="list-group-item list-group-item-secondary active" aria-current="true">
+                {% trans "Самые просматриваемые статьи" %}
+            </a>
+            <ul>
+                {% popular_articles_by_period as articles_list %}
+                {% for article in articles_list %}
+                    <li>
+                        <a class="list-group-item list-group-item-action" href="{{ article.get_absolute_url }}">
+                            <div class="card-text">{{ article.title }}</div>
+                        </a>
+                    </li>
+                {% empty %}
+                    <li>{% trans "Популярных статей не найдено." %}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+{% endcache %}
