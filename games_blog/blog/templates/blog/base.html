@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+{% load article_tags %}
+<html lang="ru">
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+
+
+    {% block css_styles %}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="stylesheet" href="{% static 'css/blog_style.css' %}">
+    {% endblock %}
+
+
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+
+
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+
+<!-- Header -->
+{% block header %}
+    {% include 'blog/includes/header.html' %}
+{% endblock %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-8 bg-secondary-subtle" style="border-radius: 15px;">
+            {% include 'blog/includes/sort_articles_menu.html' %}
+        </div>
+
+    </div>
+</div>
+
+<!-- Content -->
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8">
+            {% include 'blog/includes/messages.html' %}
+            <div id="content-block">
+                {% block content %}
+                {% endblock %}
+            </div>
+
+            <!-- Pagination -->
+            {% block pagination %}
+            {% endblock %}
+        </div>
+        <div class="col-lg-4">
+            {% block search %}
+                {% include 'blog/widgets/search_field.html' %}
+            {% endblock %}
+
+            {% block most_views_articles %}
+                {% include 'blog/widgets/most_viewed_articles.html' %}
+            {% endblock %}
+
+            {% block categories %}
+                {% all_categories %}
+            {% endblock %}
+
+            {% block last_articles_by_count %}
+                {% show_latest_articles %}
+            {% endblock %}
+
+            {% block most_commented_articles %}
+                {% get_most_commented_articles %}
+            {% endblock %}
+
+            {% block oauth %}
+                {% include 'blog/widgets/oauth_methods.html' %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+
+<!-- Footer -->
+{% block footer %}
+    {% include 'blog/includes/footer.html' %}
+{% endblock %}
+
+{% block script %}
+{% endblock %}
+
+
+<script src="https://unpkg.com/htmx.org@1.9.4"></script>
+<script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/backend.js' %}"></script>
+
+</body>
+</html>
