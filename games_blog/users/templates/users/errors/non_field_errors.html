@@ -1,0 +1,23 @@
+{% if messages or form.non_field_errors  or form.captcha.errors %}
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert"
+         style="margin-top: 50px;">
+        <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+               {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        
+        {% if form.captcha.errors %}
+            {% for error in form.captcha.errors %}
+                <p>{{ error }} при вводе капчи</p>
+            {% endfor %}
+        {% endif %}
+        
+        {{ form.non_field_errors }}
+    </div>
+
+{% endif %}
