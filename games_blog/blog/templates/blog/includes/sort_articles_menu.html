@@ -1,0 +1,84 @@
+{% load i18n %}
+<p class="text-center mb-3 mt-3">
+   {% trans "Сортировка:" %}
+</p>
+
+<div class="direction-options d-flex justify-content-evenly mb-3">
+
+    <div class="direction-item text-center">
+        <p class="card-text">
+             {% trans "по ID" %}
+            <a href=""
+               hx-get="{% url 'blog:article_list_sort' filter='id' direction='ASC' %}"
+               hx-target="#content-block"
+               hx-swap="innerHTML">
+                ⇓
+            </a>
+            <a href=""
+               hx-get="{% url 'blog:article_list_sort' filter='id' direction='DESC' %}"
+               hx-target="#content-block"
+               hx-swap="innerHTML">
+                ⇑
+            </a>
+        </p>
+
+    </div>
+    <div class="direction-item text-center">
+        <p class="card-text">
+            {% trans "по автору" %}
+            <a href=""
+               hx-get="{% url 'blog:article_list_sort' filter='author' direction='ASC' %}"
+               hx-target="#content-block"
+               hx-swap="innerHTML">
+                ⇓
+            </a>
+            <a href=""
+               hx-get="{% url 'blog:article_list_sort' filter='author' direction='DESC' %}"
+               hx-target="#content-block"
+               hx-swap="innerHTML">
+                ⇑
+            </a>
+        </p>
+
+    </div>
+    <div class="direction-item text-center">
+        <p class="card-text">
+             {% trans "по дате публикации" %}
+            <a href=""
+               hx-get="{% url 'blog:article_list_sort' filter='created_at' direction='ASC' %}"
+               hx-target="#content-block"
+               hx-swap="innerHTML">
+                ⇓
+            </a>
+            <a href=""
+               hx-get="{% url 'blog:article_list_sort' filter='created_at' direction='DESC' %}"
+               hx-target="#content-block"
+               hx-swap="innerHTML">
+                ⇑
+            </a>
+        </p>
+
+    </div>
+    <div class="direction-item text-center">
+        <p class="card-text">
+           {% trans "по названию" %}
+            <a href=""
+               hx-get="{% url 'blog:article_list_sort' filter='title' direction='ASC' %}"
+               hx-target="#content-block"
+               hx-swap="innerHTML">
+                ⇓
+            </a>
+            <a href=""
+               hx-get="{% url 'blog:article_list_sort' filter='title' direction='DESC' %}"
+               hx-target="#content-block"
+               hx-swap="innerHTML">
+                ⇑
+            </a>
+        </p>
+
+    </div>
+
+
+</div>
+
+
